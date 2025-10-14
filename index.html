@@ -1,0 +1,15 @@
+function startMonitoring() {
+  const up = parseFloat(document.getElementById('upTarget').value);
+  const down = parseFloat(document.getElementById('downTarget').value);
+  const interval = parseFloat(document.getElementById('interval').value);
+
+  if (!up || !down) {
+    alert("Please enter all fields.");
+    return;
+  }
+
+  fetch(`/start?up=${up}&down=${down}&interval=${interval}`)
+    .then(res => res.text())
+    .then(msg => document.getElementById('status').innerText = msg)
+    .catch(err => console.error(err));
+}
